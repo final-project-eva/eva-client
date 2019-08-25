@@ -4,17 +4,31 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from '../containers/home'
 import Profile from '../containers/profile'
 import Graph from '../containers/graph'
+import Detail from '../containers/detail'
+import Add from '../containers/add'
+
+const DetailNav = createStackNavigator({
+    Home: { 
+      screen: Home,
+      navigationOptions: {
+        header: null
+      } 
+    }, 
+    Detail: { 
+      screen: Detail
+    }
+})
 
 const StackNav = createStackNavigator({
-    Home: { 
-        screen: Home,
-        navigationOptions: {
-            header: null
-        } 
-    }, 
-    // Detail: { 
-    //     screen: Detail
-    // }
+  Home: { 
+    screen: DetailNav,
+    navigationOptions: {
+      header: null
+    } 
+  }, 
+  Add: {
+    screen: Add,
+  }
 })
 
 const TabBarNav = createBottomTabNavigator({
@@ -44,16 +58,20 @@ const TabBarNav = createBottomTabNavigator({
   }
 })
 
-// StackNav.navigationOptions = ({ navigation }) => {
-// let { routeName } = navigation.state.routes[navigation.state.index];
-// let navigationOptions = {};
+StackNav.navigationOptions = ({ navigation }) => {
+let { routeName } = navigation.state.routes[navigation.state.index]
+let navigationOptions = {};
 
-// if (routeName === 'Detail') {
-//     navigationOptions.tabBarVisible = false
-// }
+if(navigation.state.routes[navigation.state.index].routeName === 'Home' && navigation.state.routes[navigation.state.index].routes[navigation.state.routes[navigation.state.index].index].routeName === 'Detail') {
+  navigationOptions.tabBarVisible = false
+} 
 
-// return navigationOptions;
-// }
+if (routeName === 'Add') {
+  navigationOptions.tabBarVisible = false
+} 
+
+return navigationOptions;
+}
   
 
 export default createAppContainer(TabBarNav)

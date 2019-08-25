@@ -1,15 +1,20 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableHighlight } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-const trxCard = () => {
+const trxCard = (props) => {
+    let { dataNav } = props
     return (
         <View style={{ backgroundColor: "#E03C31", marginTop: 10, borderRadius: 10, padding: 10 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={{ fontSize: 14, color: "white" }}> FOOD & BEVERAGES </Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                    <Icon name="edit" style={{ fontSize: 20, color: "white", marginRight: 10 }}> </Icon>
-                    <Icon name="trash" style={{ fontSize: 20, color: "white" }}> </Icon>
+                    <TouchableHighlight onPress={ () => dataNav.navigation.navigate('Detail', { ...props }) }>
+                        <Icon name="edit" style={{ fontSize: 20, color: "white", marginRight: 10 }}> </Icon>
+                    </TouchableHighlight>
+                    <TouchableHighlight>
+                        <Icon name="trash" style={{ fontSize: 20, color: "white" }}> </Icon>   
+                    </TouchableHighlight>
                 </View>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>

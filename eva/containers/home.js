@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableHighlight } from 'react-native'
 import TrxCard from '../components/trxCard'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-const home = () => {
+const home = (props) => {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
@@ -42,17 +42,12 @@ const home = () => {
                 <View style={{ flex: 7, backgroundColor: "white", padding: "5%", marginTop: 5 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}> 
                         <Text style={{ fontSize: 20, color: "#6F1A1D" }}>OUTCOMES : </Text>
-                        <Icon name="plus" style={{ fontSize: 20, color: "#6F1A1D" }}> </Icon>
+                        <TouchableHighlight onPress={ () => props.navigation.navigate('Add') }>
+                            <Icon name="plus" style={{ fontSize: 20, color: "#6F1A1D" }}> </Icon>
+                        </TouchableHighlight>
                     </View>
                     <ScrollView>
-                        <TrxCard />
-                        <TrxCard />
-                        <TrxCard />
-                        <TrxCard />
-                        <TrxCard />
-                        <TrxCard />
-                        <TrxCard />
-                        <TrxCard />
+                        <TrxCard dataNav={ props } />
                     </ScrollView>
                 </View>
             </View>
