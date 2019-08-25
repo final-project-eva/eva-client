@@ -1,6 +1,7 @@
 const data = {
     user: '',
-    isLogin: localStorage.getItem('email') ? true : false,
+    indexPlan: '',
+    isLogin: false,/*localStorage.getItem('email') ? true : false,*/
     plans : [],
     plan: '',
     outcome: ''
@@ -31,6 +32,18 @@ export default function reducer(state = data, action) {
             return {
                 ...state,
                 plan: action.plan
+            }
+        case "GET_NEXT_PLAN" :
+            return {
+                ...state,
+                indexPlan: action.indexPlan + 1,
+                plan: plan[indexPlan]
+            }
+        case "GET_BEFORE_PLAN" :
+            return {
+                ...state,
+                indexPlan: action.indexPlan - 1,
+                plan: plan[indexPlan]
             }
         default:
             return state
