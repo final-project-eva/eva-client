@@ -1,59 +1,129 @@
 import axios from 'axios'
 
-export function getPlayers() {
+export function getPlans() {
     return (dispatch) => {
-        axios.get('https://nba-players.herokuapp.com/players-stats')
-        .then(({data}) => {
+        // axios.get('https://nba-players.herokuapp.com/players-stats')
+        // .then(({data}) => {
             dispatch({ 
-                type: "GET_PLAYERS",
-                players : data
+                type: "GET_PLANS",
+                budgets : data
             })
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
     }
 }
 
-export function getPlayer(lastName, firstName) {
+export function getPlan(id) {
     return (dispatch) => {
-        axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
-        .then(({data}) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
             dispatch({ 
-                type: "GET_PLAYER",
-                player : data
+                type: "GET_PLAN",
+                plan : data
             })
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
     }
 }
 
-export function clearPlayer() {
+export function Login() {
     return (dispatch) => {
-        dispatch({ 
-            type: "CLEAR_PLAYER"
-        })
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+            dispatch({ 
+                type: "GET_PLAN",
+                isLogin: true,
+                user : data
+            })
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
     }
 }
 
-export function getNews() {
+export function Logout() {
     return (dispatch) => {
-        axios({
-            method: 'get',
-            url: 'https://api.sportsdata.io/v3/nba/scores/json/News',
-            responseType: 'json',
-            headers: {"Ocp-Apim-Subscription-Key" : "697a2793c80649e4b44431f2711d7a3c"}
-        })
-        .then(({data}) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
             dispatch({ 
-                type: "GET_NEWS",
-                news : data
+                type: "LOGOUT",
+                isLogin: false
             })
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
     }
 }
+
+export function addPlan(data) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
+export function editPlan(data) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
+export function deletePlan(data) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
+export function addOutcome(data) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
+export function editOutcome(data) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
+export function deleteOutcome(data) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
