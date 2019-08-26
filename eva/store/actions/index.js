@@ -268,6 +268,7 @@ export function getOutcome(data) {
             dispatch({ 
                 type: "GET_OUTCOME",
                 outcome : data
+
             })
         })
         .catch(function (err) {
@@ -275,4 +276,39 @@ export function getOutcome(data) {
         })
     }
 }
+
+export function nextPlan(id) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+            // })
+                    // dispatch({ 
+                    //     type: "GET_PLAN",
+                    //     indexPlan: data,
+                    //     plan : data
+                    // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
+export function beforePlan(id) {
+    return (dispatch) => {
+        // axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        // .then(({data}) => {
+            dispatch({ 
+                type: "GET_PLAN",
+                indexPlan: data,
+                plan : data
+            })
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
+    }
+}
+
+
+
 
