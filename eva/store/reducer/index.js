@@ -1,30 +1,49 @@
 const data = {
-    news: [],
-    players : [],
-    player: ''
+    user: '',
+    indexPlan: '',
+    isLogin: false,/*localStorage.getItem('email') ? true : false,*/
+    plans : [],
+    plan: '',
+    outcome: ''
 }
 
 export default function reducer(state = data, action) {
     switch (action.type) {
-        case "GET_PLAYERS":
+        case "LOGIN":
             return {
                 ...state,
-                players : action.players
+                isLogin : action.isLogin,
+                user: action.user
             }
-        case "GET_PLAYER" :
+        case "LOGOUT":
             return {
                 ...state,
-                player: action.player
+                isLogin : action.isLogin,
+                plans: [],
+                plan: '',
+                user: []
             }
-        case "CLEAR_PLAYER" :
+        case "GET_PLANS":
             return {
                 ...state,
-                player: []
+                plans : action.plans
             }
-        case "GET_NEWS" :
+        case "GET_PLAN" :
             return {
                 ...state,
-                news: action.news
+                plan: action.plan
+            }
+        case "GET_NEXT_PLAN" :
+            return {
+                ...state,
+                indexPlan: action.indexPlan + 1,
+                plan: plan[indexPlan]
+            }
+        case "GET_BEFORE_PLAN" :
+            return {
+                ...state,
+                indexPlan: action.indexPlan - 1,
+                plan: plan[indexPlan]
             }
         default:
             return state

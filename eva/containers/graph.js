@@ -1,9 +1,29 @@
 import React from 'react'
-import { View, Text, ScrollView, Image, TouchableHighlight } from 'react-native'
-import TrxCard from '../components/trxCard'
+import { View, Text, Dimensions, Image } from 'react-native'
+import { PieChart } from 'react-native-chart-kit'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-const home = (props) => {
+const history = () => {
+    const chartConfig = {
+        backgroundGradientFrom: '#1E2923',
+        backgroundGradientTo: '#08130D',
+        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+        strokeWidth: 2
+    }
+    
+    const screenWidth = Dimensions.get('window').width
+
+    const dataPie = [
+        { name: 'Food & Beverage', population: 1000, color: 'pink', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Transportation', population: 1000, color: '#E03C31', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Medical', population: 1000, color: 'blue', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Entertainment', population: 1000, color: 'purple', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Bill', population: 1000, color: 'yellow', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Personal Care', population: 1000, color: 'orange', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Education', population: 1000, color: 'lightblue', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Balance', population: 1000, color: 'green', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Overbudget', population: 100, color: 'gray', legendFontColor: '#7F7F7F', legendFontSize: 12 }
+      ]
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
@@ -21,7 +41,7 @@ const home = (props) => {
                         </View>
                     </View>
                 </View>
-                <View style={{ flex: 1, backgroundColor: "#6F1A1D", flexDirection: "row", alignItems: "center", alignContent: "space-around",  paddingLeft: "8%", paddingRight: "8%", marginTop: "1%"  }}>
+                <View style={{ flex: 1, backgroundColor: "#6F1A1D", flexDirection: "row", alignItems: "center", alignContent: "space-around",  paddingLeft: "8%", paddingRight: "8%"  }}>
                     <View style={{ flex: 1, borderRightColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
                         <Text style={{ fontSize: 14, color: "white" }}>INCOME</Text>
                         <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
@@ -39,20 +59,13 @@ const home = (props) => {
                         <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
                     </View>
                 </View>
-                <View style={{ flex: 7, backgroundColor: "white", padding: "5%", marginTop: 5 }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}> 
-                        <Text style={{ fontSize: 20, color: "#6F1A1D" }}>OUTCOMES : </Text>
-                        <TouchableHighlight onPress={ () => props.navigation.navigate('Add') }>
-                            <Icon name="plus" style={{ fontSize: 20, color: "#6F1A1D" }}> </Icon>
-                        </TouchableHighlight>
-                    </View>
-                    <ScrollView>
-                        <TrxCard dataNav={ props } />
-                    </ScrollView>
+                <View style={{ flex: 7, backgroundColor: "white", marginTop: 5, alignItems: "center" }}>
+                    <Text style={{ fontSize: 20, fontWeight: "500", color: "#6F1A1D", marginTop: 20 }}> Monthly Graph </Text>
+                    <PieChart data={dataPie} width={screenWidth} height={220} chartConfig={chartConfig} accessor="population" backgroundColor="transparent" paddingLeft="1" absolute />
                 </View>
             </View>
         </View>
     )
 }
 
-export default home
+export default history
