@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 const trxCard = (props) => {
     let { dataNav } = props
     return (
-        <View style={{ backgroundColor: "#E03C31", marginTop: 10, borderRadius: 10, padding: 10 }}>
+        <View style={{ backgroundColor: "#E0115F", marginTop: 10, borderRadius: 10, padding: 10 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Text style={{ fontSize: 14, color: "white" }}> FOOD & BEVERAGES </Text>
+                <Text style={{ fontSize: 12, color: "white" }}> FOOD & BEVERAGES </Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                     <TouchableHighlight onPress={ () => dataNav.navigation.navigate('Detail', { ...props }) }>
                         <Icon name="edit" style={{ fontSize: 20, color: "white", marginRight: 10 }}> </Icon>
