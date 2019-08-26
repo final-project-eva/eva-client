@@ -21,7 +21,8 @@ const history = () => {
         { name: 'Bill', population: 1000, color: 'yellow', legendFontColor: '#7F7F7F', legendFontSize: 12 },
         { name: 'Personal Care', population: 1000, color: 'orange', legendFontColor: '#7F7F7F', legendFontSize: 12 },
         { name: 'Education', population: 1000, color: 'lightblue', legendFontColor: '#7F7F7F', legendFontSize: 12 },
-        { name: 'Balance', population: 1000, color: 'green', legendFontColor: '#7F7F7F', legendFontSize: 12 }
+        { name: 'Balance', population: 1000, color: 'green', legendFontColor: '#7F7F7F', legendFontSize: 12 },
+        { name: 'Overbudget', population: 100, color: 'gray', legendFontColor: '#7F7F7F', legendFontSize: 12 }
       ]
     return (
         <View style={{ flex: 1 }}>
@@ -58,7 +59,8 @@ const history = () => {
                         <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
                     </View>
                 </View>
-                <View style={{ flex: 7, backgroundColor: "white", marginTop: 5 }}>
+                <View style={{ flex: 7, backgroundColor: "white", marginTop: 5, alignItems: "center" }}>
+                    <Text style={{ fontSize: 20, fontWeight: "500", color: "#6F1A1D", marginTop: 20 }}> Monthly Graph </Text>
                     <PieChart data={dataPie} width={screenWidth} height={220} chartConfig={chartConfig} accessor="population" backgroundColor="transparent" paddingLeft="1" absolute />
                 </View>
             </View>
