@@ -44,6 +44,7 @@ export function login(payload){
         })
         .then(({data})=> {
             AsyncStorage.setItem("token",data.token)
+            AsyncStorage.setItem("userid",data.userId)
             payload.navigation.navigate("TabBarNav")
             dispatch({
                 type: "LOGIN_USERS"
@@ -130,13 +131,19 @@ export function updateProfile(payload){
     }
 }
 
-export function getPlayers() {
+export function getPlans() {
+    let userid = ''
+    AsyncStorage.getItem('userid', function(err,data){
+        userid=data
+    })
+    console.log(userid,'id');
+    
     return (dispatch) => {
-        axios.get('https://nba-players.herokuapp.com/players-stats')
+        axios.get(`${androidUrl}:3000/plan/${userid}`)
         .then(({data}) => {
             dispatch({ 
-                type: "GET_PLAYERS",
-                players : data
+                type: "GET_PLANS",
+                plans : data
             })
         })
         .catch(function (err) {
@@ -145,13 +152,13 @@ export function getPlayers() {
     }
 }
 
-export function getPlayer(lastName, firstName) {
+export function getPlan(id) {
     return (dispatch) => {
-        axios.get(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`)
+        axios.get(`${androidUrl}:3000/plan/detail/${id}`)
         .then(({data}) => {
             dispatch({ 
-                type: "GET_PLAYER",
-                player : data
+                type: "GET_PLAN",
+                plan : data
             })
         })
         .catch(function (err) {
@@ -160,26 +167,13 @@ export function getPlayer(lastName, firstName) {
     }
 }
 
-export function clearPlayer() {
+export function addPlan(data) {
     return (dispatch) => {
-        dispatch({ 
-            type: "CLEAR_PLAYER"
-        })
-    }
-}
-
-export function getNews() {
-    return (dispatch) => {
-        axios({
-            method: 'get',
-            url: 'https://api.sportsdata.io/v3/nba/scores/json/News',
-            responseType: 'json',
-            headers: {"Ocp-Apim-Subscription-Key" : "697a2793c80649e4b44431f2711d7a3c"}
-        })
+        axios.post(`${androidUrl}:3000/plan`, data)
         .then(({data}) => {
             dispatch({ 
-                type: "GET_NEWS",
-                news : data
+                type: "ADD_PLAN",
+                plan : data
             })
         })
         .catch(function (err) {
@@ -187,3 +181,98 @@ export function getNews() {
         })
     }
 }
+
+export function editPlan(data) {
+    return (dispatch) => {
+        axios.patch(`${androidUrl}:3000/plan/${data.id}`,{
+
+        })
+        .then(({data}) => {
+            dispatch({ 
+                type: "EDIT_PLAN",
+                plan : data
+            })
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+}
+
+export function deletePlan(data) {
+    return (dispatch) => {
+        axios.delete(`${androidUrl}:3000/plan/${data.id}`)
+        .then(({data}) => {
+            dispatch({ 
+                type: "DELETE_PLAN",
+                plan : data
+            })
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+}
+
+export function addOutcome(data) {
+    return (dispatch) => {
+        axios.post(`${androidUrl}:3000/outcome`)
+        .then(({data}) => {
+            dispatch({ 
+                type: "ADD_OUTCOME",
+                outcome : data
+            })
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+}
+
+export function editOutcome(data) {
+    return (dispatch) => {
+        axios.patch(`${androidUrl}:3000/outcome/${data.id}`,{
+
+        })
+        .then(({data}) => {
+            dispatch({ 
+                type: "EDIT_OUTCOME",
+                outcome : data
+            })
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+}
+
+export function deleteOutcome(data) {
+    return (dispatch) => {
+        axios.delete(`${androidUrl}:3000/outcome/${data.id}`)
+        .then(({data}) => {
+            dispatch({ 
+                type: "DELETE_OUTCOME",
+                outcome : data
+            })
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+}
+
+export function getOutcome(data) {
+    return (dispatch) => {
+        axios.get(`${androidUrl}:3000/outcome/${data.id}`)
+        .then(({data}) => {
+            dispatch({ 
+                type: "GET_OUTCOME",
+                outcome : data
+            })
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+}
+
