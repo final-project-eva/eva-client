@@ -17,6 +17,7 @@ export function register(payload){
             dispatch({
                 type: "REGISTER_USERS"
             })
+            dispatch(addPlan({userId: data._id, income: 0, budgets:[{category: "bills", amount: 0}], balance:0}))
             payload.navigation.navigate('Login')
         })
         .catch(err =>{
@@ -75,8 +76,8 @@ function axUser(token){
     })
 }
 export function getUsers(token){
-    console.log(token);
-            
+    console.log(token,'token');
+    
     return dispatch => {
         axUser(token)
         .then(({data})=> {
@@ -131,24 +132,37 @@ export function updateProfile(payload){
     }
 }
 
+export function getFromForm(data){
+    return dispatch => {
+        dispatch({
+            type: "GET_STATE_FORM",
+            payload: data
+        })
+    }
+}
+function axPlan(userid){
+    return axios.get(`${androidUrl}:3000/plan/${userid}`)
+}
+
 export function getPlans() {
     let userid = ''
-    AsyncStorage.getItem('userid', function(err,data){
-        userid=data
-    })
-    console.log(userid,'id');
     
     return (dispatch) => {
-        axios.get(`${androidUrl}:3000/plan/${userid}`)
-        .then(({data}) => {
-            dispatch({ 
-                type: "GET_PLANS",
-                plans : data
+        AsyncStorage.getItem('userid', function(err,data){
+            userid=data
+            console.log(userid,'id');
+            
+            axPlan(userid)
+            .then(({data}) => {
+                dispatch({ 
+                    type: "GET_PLANS",
+                    plans : data
+                })
             })
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+            .catch(function (err) {
+                console.log(err);
+            })
+        })    
     }
 }
 
@@ -168,9 +182,19 @@ export function getPlan(id) {
 }
 
 export function addPlan(data) {
+    // console.log(data);
+    
     return (dispatch) => {
-        axios.post(`${androidUrl}:3000/plan`, data)
+        console.log(data);
+        
+        axios.post(`${androidUrl}:3000/plan`, {
+            balance: data.balance,
+            budgets: data.budgets,
+            income: data.income,
+            userId: data.userId
+        })
         .then(({data}) => {
+            return axPlan()
             dispatch({ 
                 type: "ADD_PLAN",
                 plan : data
@@ -215,12 +239,26 @@ export function deletePlan(data) {
 }
 
 export function addOutcome(data) {
+console.log(data);
+
     return (dispatch) => {
-        axios.post(`${androidUrl}:3000/outcome`)
+        axios.post(`${androidUrl}:3000/outcome`,data)
         .then(({data}) => {
             dispatch({ 
                 type: "ADD_OUTCOME",
                 outcome : data
+            })
+            AsyncStorage.getItem('userid', function(err,data){
+                
+                return axPlan(data)
+                
+            })    
+            
+        })
+        .then(({data}) => {
+            dispatch({ 
+                type: "GET_PLANS",
+                plans : data
             })
         })
         .catch(function (err) {

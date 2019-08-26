@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, StyleSheet, View, Text } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Text, StatusBar } from 'react-native'
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';

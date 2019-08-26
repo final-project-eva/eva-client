@@ -17,7 +17,8 @@ export default function userReducer (state = initialState, action){
             }
         case "ADD_PLAN" :
             return {
-                ...state
+                ...state,
+                plans: state.plans.push(action.plan)
             }
         
         default:
