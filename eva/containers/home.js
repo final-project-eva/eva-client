@@ -25,8 +25,10 @@ const home = (props) => {
     },[])
     useEffect(()=>{
         props.getPlans()
+        
     },[])
     let plans = props.Plans[0]
+    console.log(plans,'ini plans');
     const {firstname, lastname, phone_number} = props.Users
     let sumAmount = 0
 
@@ -78,33 +80,33 @@ const home = (props) => {
                     <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "space-around" }}>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Personal Care</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[6].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Food & Beverages</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[3].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Entertainment</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[0].amount }</Text>
                         </View>
                     </View>
                     <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "space-around", marginTop: "2%" }}>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Education</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[4].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Health</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[1].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Bills</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[5].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Other</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[2].amount }</Text>
                         </View>
                     </View>
                 <View style={{ flex: 4, backgroundColor: "white", padding: "5%", marginTop: 5 }}>
@@ -114,6 +116,16 @@ const home = (props) => {
                             <Icon name="plus" style={{ fontSize: 20, color: "#6F1A1D" }}> </Icon>
                         </TouchableHighlight>
                     </View>
+                    <ScrollView>
+                        <Text>
+                        </Text>
+                        {
+                            plans.outcome.map((item) => {
+                                return <TrxCard key={item._id} navigation={ props.navigation } plans={item} />
+                            })
+                        }
+                    </ScrollView>
+
                 </View>
             </View>
             </View>

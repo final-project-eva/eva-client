@@ -15,7 +15,7 @@ const mapActionToProps = { getFromForm }
 
 const form = (props) => {
     const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('Bills')
     const [price, setPrice] = useState('')
 
     useEffect(()=> {
