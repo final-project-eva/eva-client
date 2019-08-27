@@ -2,8 +2,30 @@ import React from 'react'
 import { View, Text, Dimensions, Image } from 'react-native'
 import { PieChart } from 'react-native-chart-kit'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { getPlans, getUsers } from '../store/actions'
+
+const mapStateToProps = (state) => {
+    return {
+        Plans : state.Plan.plans,
+        Users : state.User.users,
+        title : state.Outcome.title,
+        category: state.Outcome.category,
+        price: state.Outcome.price
+    }
+}
+
+const mapActionToProps = { getPlans, getUsers, addOutcome }
 
 const history = () => {
+    useEffect(()=> {
+        AsyncStorage.getItem("token", function(err, data){
+            props.getUsers(data)
+        })
+    },[])
+    useEffect(()=>{
+        props.getPlans()
+    },[])
+    const {firstname, lastname, phone_number} = props.Users
     const chartConfig = {
         backgroundGradientFrom: '#1E2923',
         backgroundGradientTo: '#08130D',
@@ -32,8 +54,8 @@ const history = () => {
                         <Image  source={require('../containers/logo.png')} style={{ width: 100, height: 100, marginTop: -20}} />
                     </View>
                     <View style={{ flex: 11, alignItems: "flex-end"}}>
-                        <Text style={{ fontSize: 30, color: "#6F1A1D" }}> ELIA </Text>
-                        <Text style={{ textAlign: "center", marginTop: 0, fontSize: 17, color: "#E03C31", borderColor: "#6F1A1D", borderRadius: 10, borderWidth: 2, width: "40%" }}> 081234567890 </Text>
+                        <Text style={{ fontSize: 30, color: "#6F1A1D" }}> {firstname +' '+ lastname} </Text>
+                        <Text style={{ textAlign: "center", marginTop: 0, fontSize: 17, color: "#E03C31", borderColor: "#6F1A1D", borderRadius: 10, borderWidth: 2, width: "40%" }}> {phone_number} </Text>
                         <View style={{ flexDirection: "row", marginTop: 3, justifyContent: "space-between" }}>
                             <Icon name="chevron-left" style={{ fontSize: 20, color: "#6F1A1D" }}> </Icon>
                             <Text style={{ fontSize: 16, color: "#E03C31" }}> August 2019 </Text>
