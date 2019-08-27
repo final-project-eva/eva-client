@@ -1,6 +1,7 @@
 const initialState = {
     plans : [],
-    plan: ''
+    plan: '',
+    error: ''
 }
 
 export default function userReducer (state = initialState, action){
@@ -20,7 +21,16 @@ export default function userReducer (state = initialState, action){
                 ...state,
                 plans: state.plans.push(action.plan)
             }
-        
+        case "EDIT_PLAN" :
+            return {
+                ...state,
+                error: ''
+            }
+        case "ERROR_EDIT_PLAN" :
+            return {
+                ...state,
+                error: action.error
+            }
         default:
             return state
     }

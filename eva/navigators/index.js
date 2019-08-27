@@ -12,7 +12,7 @@ import Detail from '../containers/detail'
 import Add from '../containers/add'
 import Edit from '../containers/editPlan'
 
-const EditNav = createStackNavigator({
+const StackNav = createStackNavigator({
   Home: { 
     screen: Home,
     navigationOptions: {
@@ -21,30 +21,12 @@ const EditNav = createStackNavigator({
   }, 
   Edit: { 
     screen: Edit
-  }
-})
-
-const DetailNav = createStackNavigator({
-    Home: { 
-      screen: EditNav,
-      navigationOptions: {
-        header: null
-      } 
-    }, 
-    Detail: { 
-      screen: Detail
-    }
-})
-
-const StackNav = createStackNavigator({
-  Home: { 
-    screen: DetailNav,
-    navigationOptions: {
-      header: null
-    } 
-  }, 
+  },
+  Detail: { 
+    screen: Detail
+  },
   Add: {
-    screen: Add,
+    screen: Add
   }
 })
 
@@ -113,11 +95,11 @@ StackNav.navigationOptions = ({ navigation }) => {
 let { routeName } = navigation.state.routes[navigation.state.index]
 let navigationOptions = {};
 
-if(navigation.state.routes[navigation.state.index].routeName === 'Home' && navigation.state.routes[navigation.state.index].routes[navigation.state.routes[navigation.state.index].index].routes[navigation.state.routes[navigation.state.index].routes[navigation.state.routes[navigation.state.index].index].index].routeName === 'Edit') {
+if (routeName === 'Detail') {
   navigationOptions.tabBarVisible = false
 } 
 
-if(navigation.state.routes[navigation.state.index].routeName === 'Home' && navigation.state.routes[navigation.state.index].routes[navigation.state.routes[navigation.state.index].index].routeName === 'Detail') {
+if (routeName === 'Edit') {
   navigationOptions.tabBarVisible = false
 } 
 
