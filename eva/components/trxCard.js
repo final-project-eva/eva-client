@@ -11,7 +11,7 @@ const trxCard = (props) => {
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={{ fontSize: 14, color: "white" }}> {plans.category} </Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                    <TouchableHighlight onPress={ () => navigation.navigate('Detail', { ...props }) }>
+                    <TouchableHighlight onPress={ () => navigation.navigate('Detail', { id: plans._id }) }>
                         <Icon name="edit" style={{ fontSize: 20, color: "white", marginRight: 10 }}> </Icon>
                     </TouchableHighlight>
                     <TouchableHighlight>

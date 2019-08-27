@@ -57,7 +57,7 @@ function Register(props){
     }
 
     function signUp(){
-        props.register({firstname, lastname, email, password, phone, navigation: props.navigation})
+        props.register({firstname, lastname, email, password, phone, username, navigation: props.navigation})
     
     }
 
@@ -65,7 +65,7 @@ function Register(props){
         
     function editUser(){
         AsyncStorage.getItem("token", function(err, data){
-            props.updateProfile({firstname, lastname, email, phone, token: data, navigation: props.navigation })
+            props.updateProfile({firstname, lastname, email, phone, username, token: data, navigation: props.navigation })
         })
                 if(error){
                     Alert.alert(
@@ -98,7 +98,7 @@ function Register(props){
                     </Item>
                     <Item floatingLabel>
                         <Label>Username</Label>
-                        <Input onChangeText={(text)=> { getUsername(text) }} value={email}/>
+                        <Input onChangeText={(text)=> { getUsername(text) }} value={username}/>
                     </Item>
                     <Item floatingLabel>
                         <Label>Phone Number</Label>

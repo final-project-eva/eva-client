@@ -10,6 +10,7 @@ export function register(payload){
             firstname: payload.firstname, 
             lastname: payload.lastname, 
             password: payload.password, 
+            username: payload.username,
             email: payload.email, 
             phone_number: payload.phone
         })
@@ -101,6 +102,7 @@ export function updateProfile(payload){
             firstname: payload.firstname, 
             lastname: payload.lastname,
             email: payload.email, 
+            username: payload.username,
             phone_number: payload.phone
         },
         { 
@@ -239,7 +241,7 @@ export function deletePlan(data) {
 }
 
 export function addOutcome(payload) {
-console.log(data);
+    console.log(payload);
 
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,id){
@@ -268,6 +270,8 @@ console.log(data);
 }
 
 export function editOutcome(data) {
+    console.log(data,'masuk edit');
+    
     return (dispatch) => {
         axios.patch(`${androidUrl}:3000/outcome/${data.id}`,{
 

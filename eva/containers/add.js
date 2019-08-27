@@ -33,7 +33,6 @@ class add extends React.Component {
         state.params.category = this.props.category
         state.params.price = this.props.price
         
-        console.log(this.props.title, "ini title ku")
         return (
             <View style={{ flex: 1, maxWidth: "95%" }}>
                 <View style={{ flex:1 }}>
