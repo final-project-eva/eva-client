@@ -1,20 +1,27 @@
 import React from 'react'
 import { View, Text, TouchableHighlight } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { connect } from 'react-redux'
+import { deleteOutcome } from '../store/actions'
+
+const mapActionToProps = { deleteOutcome }
 
 const trxCard = (props) => {
     let { navigation, plans } = props
-    console.log(navigation,'pppppppp')
+    // console.log(plans,'pppppppp')
     
+    function deleteoutcome(id){
+        props.deleteOutcome(id)
+    }
     return (
         <View style={{ backgroundColor: "#E0115F", marginTop: 10, borderRadius: 10, padding: 10 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={{ fontSize: 14, color: "white" }}> {plans.category} </Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                    <TouchableHighlight onPress={ () => navigation.navigate('Detail') }>
+                    <TouchableHighlight onPress={ () => navigation.navigate('Detail', { plans: plans }) }>
                         <Icon name="edit" style={{ fontSize: 20, color: "white", marginRight: 10 }}> </Icon>
                     </TouchableHighlight>
-                    <TouchableHighlight>
+                    <TouchableHighlight onPress={ () => {deleteoutcome(plans._id)}}>
                         <Icon name="trash" style={{ fontSize: 20, color: "white" }}> </Icon>   
                     </TouchableHighlight>
                 </View>
@@ -27,4 +34,4 @@ const trxCard = (props) => {
     )
 }
 
-export default trxCard
+export default connect(null,mapActionToProps)(trxCard)

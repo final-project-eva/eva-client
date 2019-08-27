@@ -7,13 +7,15 @@ import { getFromForm } from '../store/actions'
 const mapStateToProps = (state) => {
     return {
         title : state.Outcome.title,
-        
+        category: state.Outcome.category,
+        price: state.Outcome.price
     }
 }
 
 const mapActionToProps = { getFromForm }
 
 const form = (props) => {
+    
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('Bills')
     const [price, setPrice] = useState('')
@@ -21,6 +23,16 @@ const form = (props) => {
     useEffect(()=> {
         props.getFromForm({title: title, category: category, price: price})
     },[title,category,price])
+
+    useEffect(()=> {
+        if(props.inputdata){
+            console.log(props.inputdata,'inoutdata');
+
+            setTitle(props.inputdata.title)
+            setCategory(props.inputdata.category)
+            setPrice(String(props.inputdata.price))
+        }
+    },[])
 
     function getTitle(text){
         setTitle(text)

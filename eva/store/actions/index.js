@@ -208,23 +208,32 @@ export function addPlan(data) {
         })
         .catch(function (err) {
             console.log(err);
+            
         })
     }
 }
 
 export function editPlan(data) {
     return (dispatch) => {
-        axios.patch(`${androidUrl}:3000/plan/${data.id}`,{
-
-        })
+        axios.patch(`${androidUrl}:3000/plan/${data.id}`,data)
         .then(({data}) => {
             dispatch({ 
-                type: "EDIT_PLAN",
-                plan : data
+                type: "EDIT_PLAN"
+
             })
         })
         .catch(function (err) {
-            console.log(err);
+            Alert.alert(
+                'Error',
+                err,
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ]
+              );
+            dispatch({ 
+                type: "ERROR_EDIT_PLAN",
+                error :  err.response.data.message
+            })
         })
     }
 }
@@ -273,37 +282,57 @@ export function addOutcome(payload) {
     }
 }
 
-export function editOutcome(data) {
-    console.log(data,'masuk edit');
+export function editOutcome(payload) {
     
     return (dispatch) => {
-        axios.patch(`${androidUrl}:3000/outcome/${data.id}`,{
-
-        })
-        .then(({data}) => {
-            dispatch({ 
-                type: "EDIT_OUTCOME",
-                outcome : data
+        AsyncStorage.getItem('userid', function(err,id){
+            axios.patch(`${androidUrl}:3000/outcome/${payload.id}`,payload)
+            .then(({data}) => {
+                dispatch({ 
+                    type: "EDIT_OUTCOME",
+                    outcome : data
+                })
+                return axPlan(id)   
+                
             })
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+            .then(({data}) => {
+                dispatch({ 
+                    type: "GET_PLANS",
+                    plans : data
+                })
+            })
+            .catch(function (err) {
+                console.log(err);
+            })  
+            
+        }) 
+        
     }
 }
 
-export function deleteOutcome(data) {
+export function deleteOutcome(payload) {
     return (dispatch) => {
-        axios.delete(`${androidUrl}:3000/outcome/${data.id}`)
-        .then(({data}) => {
-            dispatch({ 
-                type: "DELETE_OUTCOME",
-                outcome : data
+        AsyncStorage.getItem('userid', function(err,id){
+            axios.delete(`${androidUrl}:3000/outcome/${payload}`)
+            .then(({data}) => {
+                Alert.alert("Data "+data.note+" has been deleted!");
+                dispatch({ 
+                    type: "DELETE_OUTCOME",
+                    outcome : data
+                })
+                return axPlan(id)   
+                
             })
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+            .then(({data}) => {
+                dispatch({ 
+                    type: "GET_PLANS",
+                    plans : data
+                })
+            })
+            .catch(function (err) {
+                console.log(err);
+            })  
+        })   
     }
 }
 

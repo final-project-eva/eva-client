@@ -28,6 +28,7 @@ const home = (props) => {
         
     },[])
     let plans = props.Plans[0]
+
     const {firstname, lastname, phone_number} = props.Users
     let sumAmount = 0
 
@@ -66,7 +67,7 @@ const home = (props) => {
                         <Text style={{ fontSize: 14, color: "white" }}>{ plans.balance }</Text>
                     </View>
                     <View style={{ padding: 5, alignItems: "flex-end" }}> 
-                        <TouchableHighlight onPress={ () => props.navigation.navigate('Edit') }>
+                        <TouchableHighlight onPress={ () => props.navigation.navigate('Edit', {plans: plans}) }>
                             <Icon name="edit" style={{ fontSize: 20, color: "white", textAlign: "right" }}> </Icon>
                         </TouchableHighlight>
                     </View>
