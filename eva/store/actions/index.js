@@ -18,7 +18,7 @@ export function register(payload){
             dispatch({
                 type: "REGISTER_USERS"
             })
-            dispatch(addPlan({userId: data._id, income: 0, budgets:[{category: "bills", amount: 0}], balance:0}))
+            dispatch(addPlan({userId: data._id, username: data.username, income: 0, budgets:[{category: "bills", amount: 0}], balance:0}))
             payload.navigation.navigate('Login')
         })
         .catch(err =>{

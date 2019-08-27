@@ -18,7 +18,6 @@ function Register(props){
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [username, setUsername] = useState('')
     const [error,setError] = useState(props.error)
 
     const { types, users } = props.navigation.state.params
