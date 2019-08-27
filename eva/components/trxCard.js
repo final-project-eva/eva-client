@@ -8,15 +8,14 @@ const mapActionToProps = { deleteOutcome }
 
 const trxCard = (props) => {
     let { navigation, plans } = props
-    // console.log(plans,'pppppppp')
     
     function deleteoutcome(id){
         props.deleteOutcome(id)
     }
     return (
-        <View style={{ backgroundColor: "#E0115F", marginTop: 10, borderRadius: 10, padding: 10 }}>
+        <View style={{ backgroundColor: "#E0115F", marginTop: 8, borderRadius: 10, padding: 5 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Text style={{ fontSize: 14, color: "white" }}> {plans.category} </Text>
+                <Text style={{ fontSize: 18, color: "white" }}> {plans.category} </Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                     <TouchableHighlight onPress={ () => navigation.navigate('Detail', { plans: plans }) }>
                         <Icon name="edit" style={{ fontSize: 20, color: "white", marginRight: 10 }}> </Icon>
@@ -27,7 +26,7 @@ const trxCard = (props) => {
                 </View>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Text style={{ fontSize: 18, color: "white" }}> {plans.note} </Text>
+                <Text style={{ fontSize: 20, color: "white" }}> {plans.note} </Text>
                 <Text style={{ fontSize: 20, color: "white" }}>{plans.amount}</Text>
             </View>
         </View>
