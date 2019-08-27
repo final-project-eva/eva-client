@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-// const androidUrl = 'http://localhost'
-const androidUrl = 'http://10.0.2.2'
+const androidUrl = 'http://localhost'
+// const androidUrl = 'http://10.0.2.2'
 
 export function register(payload){
     
@@ -23,6 +23,7 @@ export function register(payload){
             })
             dispatch(addPlan({userId: data._id, username: data.username, income: 0, budgets:[
                 {category: "Bills", amount: 0},
+                {category: "Transportation", amount: 0},
                 {category: "Education", amount: 0},
                 {category: "Entertainment", amount: 0},
                 {category: "Food & Beverages", amount: 0},

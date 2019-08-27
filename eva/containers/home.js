@@ -28,7 +28,7 @@ const home = (props) => {
         
     },[])
     let plans = props.Plans[0]
-    // console.log(plans,'ini plans');
+
     const {firstname, lastname, phone_number} = props.Users
     let sumAmount = 0
 
@@ -39,11 +39,11 @@ const home = (props) => {
     } else {
         return (
             <View style={{ flex: 1 }}>
-                <View style={{ flex: 1, padding: "5%", flexDirection: "row"}}>
-                    <View style={{ flex: 1, backgroundColor: "gray" }}>
-                        <Image source={require('../containers/logo.png')} style={{ width: 100, height: 100, marginTop: -20}} />
+                <View style={{ flex: 1, padding: "3%", paddingBottom: "0%", flexDirection: "row"}}>
+                    <View style={{ flex: 1 }}>
+                        <Image source={require('../containers/logo.png')} style={{ width: 100, height: 100}} />
                     </View>
-                    <View style={{ flex: 11, alignItems: "flex-end"}}>
+                    <View style={{ flex: 4, alignItems: "flex-end", height: 50}}>
                         <Text style={{ fontSize: 30, color: "#6F1A1D" }}> {firstname +' '+ lastname} </Text>
                         <Text style={{ textAlign: "center", marginTop: 0, fontSize: 17, color: "#E03C31", borderColor: "#6F1A1D", borderRadius: 10, borderWidth: 2, width: "40%" }}> {phone_number} </Text>
                         <View style={{ flexDirection: "row", marginTop: 3, justifyContent: "space-between" }}>
@@ -53,14 +53,14 @@ const home = (props) => {
                         </View>
                     </View>
                 </View>
-                <View style={{ flex: 1, backgroundColor: "#6F1A1D", flexDirection: "row", alignItems: "center", alignContent: "space-around",  paddingLeft: "5%", paddingRight: "5%", marginTop: "1%"  }}>
+                <View style={{ flex: 1, backgroundColor: "#6F1A1D", flexDirection: "row", alignItems: "center", alignContent: "space-around",  paddingLeft: "5%", paddingRight: "5%" }}>
                     <View style={{ flex: 1, borderColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
                         <Text style={{ fontSize: 15, color: "white" }}>INCOME</Text>
                         <Text style={{ fontSize: 14, color: "white" }}>{plans.income}</Text>
                     </View>
                     <View style={{ flex: 1, borderColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
                         <Text style={{ fontSize: 15, color: "white" }}>OUTCOME</Text>
-                        <Text style={{ fontSize: 14, color: "white" }}>{ sumAmount }</Text>
+                        <Text style={{ fontSize: 14, color: "white" }}>{ plans.income - plans.balance }</Text>
                     </View>
                     <View style={{ flex: 1, borderColor: "white", alignItems: "center" }}> 
                         <Text style={{ fontSize: 15, color: "white" }}>BALANCE</Text>
@@ -72,7 +72,7 @@ const home = (props) => {
                         </TouchableHighlight>
                     </View>
                 </View>
-                <View style={{ flex: 3, backgroundColor: "#6F1A1D", paddingLeft: "5%", paddingRight: "5%", paddingTop: "3%", marginTop: "1%" }}>
+                <View style={{ flex: 4, backgroundColor: "#6F1A1D", paddingLeft: "5%", paddingRight: "5%", paddingTop: "3%", marginTop: "1%" }}>
                     <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: "1%" }}>
                         <Text style={{ color: "white", fontSize: 16, marginBottom: "1%" }}>Budgeting: </Text>
                         <Text style={{ color: "white", fontSize: 16, marginBottom: "1%" }}>Overbudget: { plans.overBudget } </Text>
@@ -83,33 +83,37 @@ const home = (props) => {
                             <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[6].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
-                            <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Food & Beverages</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[3].amount }</Text>
+                            <Text style={{ fontSize: 14, color: "white" }}>Health</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[1].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
-                            <Text style={{ fontSize: 14, color: "white" }}>Entertainment</Text>
+                            <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Entertain</Text>
                             <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[0].amount }</Text>
+                        </View>
+                        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
+                            <Text style={{ fontSize: 14, color: "white" }}>Bills</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[5].amount }</Text>
                         </View>
                     </View>
                     <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "space-around", marginTop: "2%" }}>
+                        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
+                            <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Food & Beverages</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[3].amount }</Text>
+                        </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Education</Text>
                             <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[4].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
-                            <Text style={{ fontSize: 14, color: "white" }}>Health</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[1].amount }</Text>
-                        </View>
-                        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
-                            <Text style={{ fontSize: 14, color: "white" }}>Bills</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[5].amount }</Text>
+                            <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Transport</Text>
+                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[3].amount }</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Other</Text>
                             <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[2].amount }</Text>
                         </View>
                     </View>
-                <View style={{ flex: 4, backgroundColor: "white", padding: "5%", marginTop: 5 }}>
+                <View style={{ flex: 4, backgroundColor: "white", padding: "5%", marginTop: 5, borderRadius: 10 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}> 
                         <Text style={{ fontSize: 20, color: "#6F1A1D" }}>OUTCOMES : </Text>
                         <TouchableHighlight onPress={ () => props.navigation.navigate('Add',{id: plans._id}) }>

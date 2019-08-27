@@ -114,10 +114,8 @@ function Register(props){
                             <Label>Password</Label>
                             <Input onChangeText={(text)=> { getPassword(text) }} value={password} secureTextEntry/>
                         </Item>
-                
                     }
                     <View style={{flex:1, alignItems: "center"}}>
-
                     {
                         types == 'edit' ? 
                         <TouchableOpacity onPress={()=> { editUser() }} style={styles.btn}>

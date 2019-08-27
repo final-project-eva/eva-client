@@ -72,6 +72,7 @@ const form = (props) => {
                     placeholderIconColor="#007aff" selectedValue={category} onValueChange={(value)=> setCategory(value)} >
                         <Picker.Item label="Bills" value="Bills" />
                         <Picker.Item label="Education" value="Education" />
+                        <Picker.Item label="Transportation" value="Transportation" />
                         <Picker.Item label="Entertainment" value="Entertainment" />
                         <Picker.Item label="Food & Beverages" value="Food & Beverages" />
                         <Picker.Item label="Health" value="Health" />
