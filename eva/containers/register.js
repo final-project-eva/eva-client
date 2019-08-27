@@ -15,6 +15,7 @@ function Register(props){
     const [firstname, setFirstname] = useState('')
     const [lastname, setLastname] = useState('')
     const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [username, setUsername] = useState('')
@@ -40,6 +41,10 @@ function Register(props){
         setLastname(e)
     }
 
+    function getUsername(e){
+        setUsername(e)
+    }
+
     function getEmail(e){
         setEmail(e)
     }
@@ -57,7 +62,7 @@ function Register(props){
     }
 
     function signUp(){
-        props.register({firstname, lastname, email, password, phone, navigation: props.navigation})
+        props.register({firstname, lastname, email, username, password, phone, navigation: props.navigation})
     
     }
 
@@ -91,6 +96,10 @@ function Register(props){
                     <Item floatingLabel>
                         <Label>Last Name</Label>
                         <Input onChangeText={(text)=> { getLastname(text) }} value={lastname}/>
+                    </Item>
+                    <Item floatingLabel>
+                        <Label>Username</Label>
+                        <Input onChangeText={(text)=> { getUsername(text) }} value={username}/>
                     </Item>
                     <Item floatingLabel>
                         <Label>Email</Label>

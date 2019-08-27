@@ -34,11 +34,8 @@ const home = (props) => {
         return (
             <Text>loading..</Text>
         )
-    }else{
-        console.log(plans,'geeetttttttt')
-    
-    return (
-        <View style={{ flex: 1 }}>
+    } else {
+        return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1, padding: "5%", flexDirection: "row"}}>
                     <View style={{ flex: 1, backgroundColor: "gray" }}>
@@ -57,15 +54,15 @@ const home = (props) => {
                 <View style={{ flex: 1, backgroundColor: "#6F1A1D", flexDirection: "row", alignItems: "center", alignContent: "space-around",  paddingLeft: "5%", paddingRight: "5%", marginTop: "1%"  }}>
                     <View style={{ flex: 1, borderColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
                         <Text style={{ fontSize: 15, color: "white" }}>INCOME</Text>
-                        <Text style={{ fontSize: 14, color: "white" }}>999999999</Text>
+                        <Text style={{ fontSize: 14, color: "white" }}>{plans.income}</Text>
                     </View>
                     <View style={{ flex: 1, borderColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
                         <Text style={{ fontSize: 15, color: "white" }}>OUTCOME</Text>
-                        <Text style={{ fontSize: 14, color: "white" }}>999999999</Text>
+                        <Text style={{ fontSize: 14, color: "white" }}>{ sumAmount }</Text>
                     </View>
                     <View style={{ flex: 1, borderColor: "white", alignItems: "center" }}> 
                         <Text style={{ fontSize: 15, color: "white" }}>BALANCE</Text>
-                        <Text style={{ fontSize: 14, color: "white" }}>999999999</Text>
+                        <Text style={{ fontSize: 14, color: "white" }}>{ plans.balance }</Text>
                     </View>
                     <View style={{ padding: 5, alignItems: "flex-end" }}> 
                         <TouchableHighlight onPress={ () => props.navigation.navigate('Edit') }>
@@ -76,10 +73,10 @@ const home = (props) => {
                 <View style={{ flex: 3, backgroundColor: "#6F1A1D", paddingLeft: "5%", paddingRight: "5%", paddingTop: "3%", marginTop: "1%" }}>
                     <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: "1%" }}>
                         <Text style={{ color: "white", fontSize: 16, marginBottom: "1%" }}>Budgeting: </Text>
-                        <Text style={{ color: "white", fontSize: 16, marginBottom: "1%" }}>Overbudget: 999999999 </Text>
+                        <Text style={{ color: "white", fontSize: 16, marginBottom: "1%" }}>Overbudget: { plans.overBudget } </Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "space-around" }}>
-                    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
+                        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Personal Care</Text>
                             <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
                         </View>
@@ -109,24 +106,7 @@ const home = (props) => {
                             <Text style={{ fontSize: 14, color: "white" }}>Other</Text>
                             <Text style={{ fontSize: 13, color: "white" }}>999999999</Text>
                         </View>
-//                 <View style={{ flex: 1, backgroundColor: "#6F1A1D", flexDirection: "row", alignItems: "center", alignContent: "space-around",  paddingLeft: "8%", paddingRight: "8%", marginTop: "1%"  }}>
-//                     <View style={{ flex: 1, borderRightColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
-//                         <Text style={{ fontSize: 14, color: "white" }}>INCOME</Text>
-//                         <Text style={{ fontSize: 13, color: "white" }}>{plans.income}</Text>
-//                     </View>
-//                     <View style={{ flex: 1, borderRightColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
-//                         <Text style={{ fontSize: 14, color: "white" }}>OUTCOME</Text>
-//                         <Text style={{ fontSize: 13, color: "white" }}>{ sumAmount }</Text>
-//                     </View>
-//                     <View style={{ flex: 1, borderRightColor: "white", borderRightWidth: 3, padding: 5, alignItems: "center" }}> 
-//                         <Text style={{ fontSize: 14, color: "white" }}>BALANCE</Text>
-//                         <Text style={{ fontSize: 13, color: "white" }}>{plans.balance}</Text>
-//                     </View>
-//                     <View style={{ flex: 1, padding: 5, alignItems: "center"}}> 
-//                         <Text style={{ fontSize: 10, color: "white" }}>OVERBUDGET</Text>
-//                         <Text style={{ fontSize: 13, color: "white" }}>{plans.overBudget}</Text>
-//                     </View>
-//                 </View>
+                    </View>
                 <View style={{ flex: 4, backgroundColor: "white", padding: "5%", marginTop: 5 }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}> 
                         <Text style={{ fontSize: 20, color: "#6F1A1D" }}>OUTCOMES : </Text>
@@ -134,20 +114,11 @@ const home = (props) => {
                             <Icon name="plus" style={{ fontSize: 20, color: "#6F1A1D" }}> </Icon>
                         </TouchableHighlight>
                     </View>
-                    <ScrollView>
-                        <Text>
-                        </Text>
-                        {
-                            plans.outcome.map((item) => {
-                                return <TrxCard key={item._id} navigation={ props.navigation } plans={item} />
-                            })
-                        }
-                    </ScrollView>
                 </View>
             </View>
-        </View>
-    )
-}
+            </View>
+        )
+    }
 }
 
 export default connect(mapStateToProps,mapActionToProps)(home)
