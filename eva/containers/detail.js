@@ -16,19 +16,28 @@ const mapActionToProps = { editOutcome }
 
 
 const detail = (props) => {
-    useEffect(()=> {
-        props.navigation.setParams({
-            editOutcome: props.editOutcome,
-            title: props.title,
-            category: props.category,
-            price: props.price
-        })
-    }, [])
-    const {state} = props.navigation
+    console.log(props,'props');
+    
+    // useEffect(()=> {
+    //     props.navigation.setParams({
+    //         editOutcome: props.editOutcome,
+    //         title: props.title,
+    //         category: props.category,
+    //         price: props.price
+    //     })
+    // }, [])
+    // useEffect(()=>{
+    //     if(props.navigation.state.params.plans){
+    //         props.title = props.navigation.state.params.plans.note
+    //         props.category = props.navigation.state.params.plans.category
+    //         props.price = props.navigation.state.params.plans.amount
+    //     }
+    // })
+    // const {state} = props.navigation
         
-        state.params.title = props.title
-        state.params.category = props.category
-        state.params.price = props.price
+    //     state.params.title = props.title
+    //     state.params.category = props.category
+    //     state.params.price = props.price
 
     return (
         <View style={{ flex: 1, maxWidth: "95%" }}>

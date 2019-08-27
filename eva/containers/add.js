@@ -28,7 +28,6 @@ class add extends React.Component {
     }
     render() {
         const {state} = this.props.navigation
-        
         state.params.title = this.props.title
         state.params.category = this.props.category
         state.params.price = this.props.price
@@ -57,7 +56,7 @@ class add extends React.Component {
             headerTintColor: "#6F1A1D",
             headerRight: (
                 <Text onPress={() => {state.params.addOutcome({note: state.params.title, category: state.params.category, amount: state.params.price, date: new Date(), planningId: navigation.state.params.id }),
-                navigation.navigate("Home"), console.log(state.params.price);
+                navigation.navigate("Home");
                 
                 }} style={{ marginRight: 5, fontSize: 16, fontWeight: "500", color: "#6F1A1D" }} > Submit </Text>
             )

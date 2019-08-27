@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
+// const androidUrl = 'http://localhost'
 const androidUrl = 'http://10.0.2.2'
 
 export function register(payload){
@@ -15,10 +16,20 @@ export function register(payload){
             phone_number: payload.phone
         })
         .then(({data})=> {
+            console.log(data,'hasil regis');
+            
             dispatch({
                 type: "REGISTER_USERS"
             })
-            dispatch(addPlan({userId: data._id, income: 0, budgets:[{category: "bills", amount: 0}], balance:0}))
+            dispatch(addPlan({userId: data._id, username: data.username, income: 0, budgets:[
+                {category: "Bills", amount: 0},
+                {category: "Education", amount: 0},
+                {category: "Entertainment", amount: 0},
+                {category: "Food & Beverages", amount: 0},
+                {category: "Health", amount: 0},
+                {category: "Personal Care", amount: 0},
+                {category: "Other", amount: 0}
+            ], balance:0}))
             payload.navigation.navigate('Login')
         })
         .catch(err =>{
@@ -77,8 +88,6 @@ function axUser(token){
     })
 }
 export function getUsers(token){
-    console.log(token,'token');
-    
     return dispatch => {
         axUser(token)
         .then(({data})=> {
@@ -148,12 +157,9 @@ function axPlan(userid){
 
 export function getPlans() {
     let userid = ''
-    
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,data){
             userid=data
-            console.log(userid,'id');
-            
             axPlan(userid)
             .then(({data}) => {
                 dispatch({ 
@@ -184,14 +190,11 @@ export function getPlan(id) {
 }
 
 export function addPlan(data) {
-    // console.log(data);
-    
     return (dispatch) => {
-        console.log(data);
-        
         axios.post(`${androidUrl}:3000/plan`, {
             balance: data.balance,
             budgets: data.budgets,
+            username: data.username,
             income: data.income,
             userId: data.userId
         })
