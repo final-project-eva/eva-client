@@ -19,6 +19,7 @@ const Formeditplan = (props) => {
     const [income, setIncome] = useState('')
     const [personal, setPersonal] = useState('')
     const [fb, setFb] = useState('')
+    const [transport, setTransport] = useState('')
     const [entertainment, setEntertainment] = useState('')
     const [education, setEducation] = useState('')
     const [health, setHealth] = useState('')
@@ -51,6 +52,9 @@ const Formeditplan = (props) => {
             else if(el.category == "Entertainment"){
                 setEntertainment(String(el.amount))
             }
+            else if(el.category == "Transportation"){
+                setTransport(String(el.amount))
+            }
             else if(el.category == "Health"){
                 setHealth(String(el.amount))
             }
@@ -71,6 +75,8 @@ const Formeditplan = (props) => {
                 el.amount = bills
             }else if(el.category == "Education"){
                 el.amount = education
+            } else if(el.category == "Transportation"){
+                el.amount = transport
             }
             else if(el.category == "Entertainment"){
                 el.amount = entertainment
@@ -112,6 +118,10 @@ const Formeditplan = (props) => {
                     <Item floatingLabel>
                         <Label>Entertainment</Label>
                         <Input onChangeText={(text)=> { setEntertainment(text) }} value={entertainment}/>
+                    </Item>
+                    <Item floatingLabel>
+                        <Label>Transportation</Label>
+                        <Input onChangeText={(text)=> { setTransport(text) }} value={transport}/>
                     </Item>
                     <Item floatingLabel>
                         <Label>Education</Label>
