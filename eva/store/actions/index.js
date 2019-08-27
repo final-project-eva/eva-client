@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-const androidUrl = 'http://10.0.2.2'
+const androidUrl = 'http://localhost'
 
 export function register(payload){
     
@@ -10,6 +10,7 @@ export function register(payload){
             firstname: payload.firstname, 
             lastname: payload.lastname, 
             password: payload.password, 
+            username: payload.username,
             email: payload.email, 
             phone_number: payload.phone
         })
@@ -76,8 +77,6 @@ function axUser(token){
     })
 }
 export function getUsers(token){
-    console.log(token,'token');
-    
     return dispatch => {
         axUser(token)
         .then(({data})=> {
@@ -146,12 +145,9 @@ function axPlan(userid){
 
 export function getPlans() {
     let userid = ''
-    
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,data){
             userid=data
-            console.log(userid,'id');
-            
             axPlan(userid)
             .then(({data}) => {
                 dispatch({ 
@@ -182,11 +178,7 @@ export function getPlan(id) {
 }
 
 export function addPlan(data) {
-    // console.log(data);
-    
     return (dispatch) => {
-        console.log(data);
-        
         axios.post(`${androidUrl}:3000/plan`, {
             balance: data.balance,
             budgets: data.budgets,
@@ -239,31 +231,50 @@ export function deletePlan(data) {
 }
 
 export function addOutcome(data) {
-console.log(data);
-
     return (dispatch) => {
-        axios.post(`${androidUrl}:3000/outcome`,data)
-        .then(({data}) => {
-            dispatch({ 
-                type: "ADD_OUTCOME",
-                outcome : data
-            })
-            AsyncStorage.getItem('userid', function(err,data){
-                
-                return axPlan(data)
-                
-            })    
-            
+        axios({
+            method: 'POST',
+            url: `${androidUrl}:3000/outcome`,
+            data: data
         })
         .then(({data}) => {
-            dispatch({ 
-                type: "GET_PLANS",
-                plans : data
-            })
+            console.log(data)
+            // dispatch({ 
+            //     type: "ADD_OUTCOME",
+            //     outcome : data
+            // })
+            // AsyncStorage.getItem('userid', function(err,data){
+            //     return axPlan(data)
+            // })    
         })
+        // .then(({data}) => {
+        //     dispatch({ 
+        //         type: "GET_PLANS",
+        //         plans : data
+        //     })
+        // })
         .catch(function (err) {
             console.log(err);
         })
+        // axios.post(`${androidUrl}:3000/outcome`, data)
+        // .then(({data}) => {
+        //     dispatch({ 
+        //         type: "ADD_OUTCOME",
+        //         outcome : data
+        //     })
+        //     AsyncStorage.getItem('userid', function(err,data){
+        //         return axPlan(data)
+        //     })    
+        // })
+        // .then(({data}) => {
+        //     dispatch({ 
+        //         type: "GET_PLANS",
+        //         plans : data
+        //     })
+        // })
+        // .catch(function (err) {
+        //     console.log(err);
+        // })
     }
 }
 
