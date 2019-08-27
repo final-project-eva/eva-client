@@ -17,6 +17,7 @@ function Register(props){
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+    const [username, setUsername] = useState('')
     const [error,setError] = useState(props.error)
 
     const { types, users } = props.navigation.state.params
@@ -27,6 +28,7 @@ function Register(props){
             setFirstname(users.firstname)
             setLastname(users.lastname)
             setPhone(users.phone_number)
+            setUsername(users.username)
         }
     },[])
 
@@ -44,6 +46,10 @@ function Register(props){
 
     function getPhone(e){
         setPhone(e)
+    }
+
+    function getUsername(e){
+        setUsername(e)
     }
 
     function getPassword(e){
@@ -89,6 +95,10 @@ function Register(props){
                     <Item floatingLabel>
                         <Label>Email</Label>
                         <Input onChangeText={(text)=> { getEmail(text) }} value={email}/>
+                    </Item>
+                    <Item floatingLabel>
+                        <Label>Username</Label>
+                        <Input onChangeText={(text)=> { getUsername(text) }} value={email}/>
                     </Item>
                     <Item floatingLabel>
                         <Label>Phone Number</Label>

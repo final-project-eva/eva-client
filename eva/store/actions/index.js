@@ -194,7 +194,7 @@ export function addPlan(data) {
             userId: data.userId
         })
         .then(({data}) => {
-            return axPlan()
+        
             dispatch({ 
                 type: "ADD_PLAN",
                 plan : data
@@ -238,32 +238,32 @@ export function deletePlan(data) {
     }
 }
 
-export function addOutcome(data) {
+export function addOutcome(payload) {
 console.log(data);
 
     return (dispatch) => {
-        axios.post(`${androidUrl}:3000/outcome`,data)
-        .then(({data}) => {
-            dispatch({ 
-                type: "ADD_OUTCOME",
-                outcome : data
+        AsyncStorage.getItem('userid', function(err,id){
+            axios.post(`${androidUrl}:3000/outcome`,payload)
+            .then(({data}) => {
+                dispatch({ 
+                    type: "ADD_OUTCOME",
+                    outcome : data
+                })
+                return axPlan(id)   
+                
             })
-            AsyncStorage.getItem('userid', function(err,data){
-                
-                return axPlan(data)
-                
-            })    
+            .then(({data}) => {
+                dispatch({ 
+                    type: "GET_PLANS",
+                    plans : data
+                })
+            })
+            .catch(function (err) {
+                console.log(err);
+            })  
             
-        })
-        .then(({data}) => {
-            dispatch({ 
-                type: "GET_PLANS",
-                plans : data
-            })
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
+        }) 
+       
     }
 }
 
@@ -323,7 +323,7 @@ export function nextPlan(id) {
                     // dispatch({ 
                     //     type: "GET_PLAN",
                     //     indexPlan: data,
-                    //     plan : data
+                    //     plan : da`ta
                     // })
         // .catch(function (err) {
         //     console.log(err);
