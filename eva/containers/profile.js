@@ -31,7 +31,7 @@ const profile = (props) => {
         props.navigation.navigate("Login")
     }
 
-    const { firstname, lastname, email, phone_number } = props.Users
+    const { firstname, lastname, email, phone_number, username } = props.Users
 
     return (
         <Container>
@@ -56,6 +56,12 @@ const profile = (props) => {
                     </ListItem>
                     <ListItem>
                         <Text>{email}</Text>
+                    </ListItem>
+                    <ListItem itemDivider>
+                        <Text style={styles.textInfo}>Username</Text>
+                    </ListItem>
+                    <ListItem>
+                        <Text>{username}</Text>
                     </ListItem>
                     <ListItem itemDivider>
                         <Text style={styles.textInfo}>Phone Number</Text>
