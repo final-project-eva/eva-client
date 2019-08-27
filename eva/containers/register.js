@@ -18,7 +18,6 @@ function Register(props){
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [username, setUsername] = useState('')
     const [error,setError] = useState(props.error)
 
     const { types, users } = props.navigation.state.params
@@ -62,7 +61,7 @@ function Register(props){
     }
 
     function signUp(){
-        props.register({firstname, lastname, email, username, password, phone, navigation: props.navigation})
+        props.register({firstname, lastname, email, password, phone, username, navigation: props.navigation})
     
     }
 
@@ -70,7 +69,7 @@ function Register(props){
         
     function editUser(){
         AsyncStorage.getItem("token", function(err, data){
-            props.updateProfile({firstname, lastname, email, phone, token: data, navigation: props.navigation })
+            props.updateProfile({firstname, lastname, email, phone, username, token: data, navigation: props.navigation })
         })
                 if(error){
                     Alert.alert(
@@ -104,10 +103,6 @@ function Register(props){
                     <Item floatingLabel>
                         <Label>Email</Label>
                         <Input onChangeText={(text)=> { getEmail(text) }} value={email}/>
-                    </Item>
-                    <Item floatingLabel>
-                        <Label>Username</Label>
-                        <Input onChangeText={(text)=> { getUsername(text) }} value={email}/>
                     </Item>
                     <Item floatingLabel>
                         <Label>Phone Number</Label>
