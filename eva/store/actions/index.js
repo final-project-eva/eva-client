@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-const androidUrl = 'http://localhost'
-// const androidUrl = 'http://10.0.2.2'
+// const androidUrl = 'http://localhost'
+const androidUrl = 'http://10.0.2.2'
 
 export function register(payload){
     
@@ -215,26 +215,38 @@ export function addPlan(data) {
 
 export function editPlan(data) {
     return (dispatch) => {
-        axios.patch(`${androidUrl}:3000/plan/${data.id}`,data)
-        .then(({data}) => {
-            dispatch({ 
-                type: "EDIT_PLAN"
-
+        AsyncStorage.getItem('userid', function(err,id){
+            axios.patch(`${androidUrl}:3000/plan/${data.id}`,data)
+            .then(({data}) => {
+                dispatch({ 
+                    type: "EDIT_PLAN"
+    
+                })
+                return axPlan(id)   
+                
             })
-        })
-        .catch(function (err) {
-            Alert.alert(
-                'Error',
-                err,
-                [
-                  {text: 'OK', onPress: () => console.log('OK Pressed')},
-                ]
-              );
-            dispatch({ 
-                type: "ERROR_EDIT_PLAN",
-                error :  err.response.data.message
+            .then(({data}) => {
+                dispatch({ 
+                    type: "GET_PLANS",
+                    plans : data
+                })
             })
-        })
+            .catch(function (err) {
+                Alert.alert(
+                    'Error',
+                    err,
+                    [
+                      {text: 'OK', onPress: () => console.log('OK Pressed')},
+                    ]
+                  );
+                dispatch({ 
+                    type: "ERROR_EDIT_PLAN",
+                    error :  err.response.data.message
+                })
+            })  
+            
+        }) 
+        
     }
 }
 
