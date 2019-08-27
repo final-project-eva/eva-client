@@ -7,7 +7,7 @@ const trxCard = (props) => {
     console.log(plans,'pppppppp')
     
     return (
-        <View style={{ backgroundColor: "#E03C31", marginTop: 10, borderRadius: 10, padding: 10 }}>
+        <View style={{ backgroundColor: "#E0115F", marginTop: 10, borderRadius: 10, padding: 10 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={{ fontSize: 14, color: "white" }}> {plans.category} </Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
