@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { View, TouchableOpacity, Text, TextInput, AsyncStorage, Alert, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text, TextInput, AsyncStorage, StyleSheet, Image } from 'react-native'
 import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base'
 import {connect} from 'react-redux'
 import { login } from '../store/actions'
@@ -40,6 +40,8 @@ function Login(props){
     return (
 
         <View style={{flex: 1, alignItems:'center', justifyContent: "center"}}>
+            <Image  style={{width:70, height: 100, marginBottom: 40, marginTop:110}}
+                source={require('./logo.png')}/>
             <TextInput style={styles.inputBox}
               placeholder=" Enter email"
               onChangeText={(text)=> {getEmail(text)}}
@@ -59,7 +61,7 @@ function Login(props){
                 <Text style={{fontSize:16,fontWeight:'500',color:'#ffffff',textAlign:'center'}}>Sign In</Text>
             </TouchableOpacity>
 
-            <View style={{flexDirection:"row"}}>
+            <View style={styles.signupbutton}>
                 <Text style={{fontSize:15}}>Don't have an account? </Text>
                 <TouchableOpacity onPress={()=> {props.navigation.navigate('Register',{types: "register", users: ''})}}>
                 <Text style={{fontWeight:"bold", fontSize:15}}>Sign Up</Text>

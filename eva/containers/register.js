@@ -85,8 +85,8 @@ function Register(props){
 
     return (
 
-        <Container style={{marginTop:30}}>
-            <Content>
+        <Container>
+            <Content style={{marginTop:20}}>
                 <Form>
                     <Item floatingLabel>
                         <Label>First Name</Label>

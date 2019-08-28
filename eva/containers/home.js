@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
 import { View, Text, ScrollView, Image, TouchableHighlight, AsyncStorage } from 'react-native'
+import { Spinner } from 'native-base'
 import TrxCard from '../components/trxCard'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { getPlans, getUsers, addOutcome } from '../store/actions'
@@ -34,7 +35,9 @@ const home = (props) => {
 
     if(plans === undefined){
         return (
-            <Text>loading..</Text>
+            <View style={{flex:1, justifyContent: "center"}}>
+                <Spinner color='red' />
+            </View>
         )
     } else {
         return (
@@ -80,33 +83,33 @@ const home = (props) => {
                     <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "space-around" }}>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Personal Care</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[1].amount }</Text>
+                            {/* <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[1].amount }</Text> */}
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white", textAlign: "center" }}>Food & Beverages</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[3].amount }</Text>
+                            {/* <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[3].amount }</Text> */}
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Entertainment</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[0].amount }</Text>
+                            {/* <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[0].amount }</Text> */}
                         </View>
                     </View>
                     <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "space-around", marginTop: "2%" }}>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Education</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[4].amount }</Text>
+                            {/* <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[4].amount }</Text> */}
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Health</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[1].amount }</Text>
+                            {/* <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[1].amount }</Text> */}
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Bills</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[5].amount }</Text>
+                            {/* <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[5].amount }</Text> */}
                         </View>
                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "1%", marginRight: "1%", height: "100%" }}> 
                             <Text style={{ fontSize: 14, color: "white" }}>Other</Text>
-                            <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[6].amount }</Text>
+                            {/* <Text style={{ fontSize: 13, color: "white" }}>{ plans.budgets[6].amount }</Text> */}
                         </View>
                     </View>
                 <View style={{ flex: 4, backgroundColor: "white", padding: "5%", marginTop: 5 }}>

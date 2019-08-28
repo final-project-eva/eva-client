@@ -36,7 +36,7 @@ const profile = (props) => {
     return (
         <Container>
             <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+          <Image style={styles.avatar} source={require('./logo.png')}/>
             <Content style={{flex: 1, marginTop: 60}}>
                 <List>
                     <ListItem itemDivider>
@@ -96,7 +96,7 @@ const mapActionToProps = { getUsers }
 const styles = StyleSheet.create({
     header:{
         backgroundColor: "#6F1A1D",
-        height:150,
+        height:110,
       },
       avatar: {
         width: 110,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         marginBottom:30,
         alignSelf:'center',
         position: 'absolute',
-        marginTop:80
+        marginTop:45
       },
       textInfo: {
           fontWeight:"bold",
