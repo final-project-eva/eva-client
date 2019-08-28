@@ -16,15 +16,15 @@ const mapStateToProps = (state) => {
 const mapActionToProps = { editPlan }
 
 const Formeditplan = (props) => {
-    const [income, setIncome] = useState('')
-    const [personal, setPersonal] = useState('')
-    const [fb, setFb] = useState('')
-    const [transport, setTransport] = useState('')
-    const [entertainment, setEntertainment] = useState('')
-    const [education, setEducation] = useState('')
-    const [health, setHealth] = useState('')
-    const [bills, setBills] = useState('')  
-    const [other, setOther] = useState('')  
+    const [income, setIncome] = useState(String(0))
+    const [personal, setPersonal] = useState(String(0))
+    const [fb, setFb] = useState(String(0))
+    const [transport, setTransport] = useState(String(0))
+    const [entertainment, setEntertainment] = useState(String(0))
+    const [education, setEducation] = useState(String(0))
+    const [health, setHealth] = useState(String(0))
+    const [bills, setBills] = useState(String(0))  
+    const [other, setOther] = useState(String(0))  
 
     function getIncome(text){
         setIncome(text)
@@ -100,7 +100,8 @@ const Formeditplan = (props) => {
      }
 
     return (
-        <Container style={{ flex: 1 }}>
+        <Container style={{ flex: 1, padding: "5%", width: "95%" }}>
+            <Label style={{ textAlign: "center" }}>Income Left: { Number(income) - (Number(personal) + Number(fb) + Number(entertainment) + Number(education) + Number(health) + Number(bills) + Number(other))} </Label>
             <Content>
                 <Form>
                     <Item floatingLabel>

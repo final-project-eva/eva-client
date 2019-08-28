@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-// const androidUrl = 'http://localhost'
-const androidUrl = 'http://10.0.2.2'
+const androidUrl = 'http://localhost'
+// const androidUrl = 'http://10.0.2.2'
 
 export function register(payload){
     
@@ -16,20 +16,18 @@ export function register(payload){
             phone_number: payload.phone
         })
         .then(({data})=> {
-            console.log(data,'hasil regis');
-            
             dispatch({
                 type: "REGISTER_USERS"
             })
             dispatch(addPlan({userId: data._id, username: data.username, income: 0, budgets:[
-                {category: "Bills", amount: 0},
-                {category: "Transportation", amount: 0},
-                {category: "Education", amount: 0},
-                {category: "Entertainment", amount: 0},
-                {category: "Food & Beverages", amount: 0},
-                {category: "Health", amount: 0},
-                {category: "Personal Care", amount: 0},
-                {category: "Other", amount: 0}
+                {category: "bills", amount: 0},
+                {category: "transportation", amount: 0},
+                {category: "education", amount: 0},
+                {category: "entertainment", amount: 0},
+                {category: "food & beverages", amount: 0},
+                {category: "health", amount: 0},
+                {category: "personal care", amount: 0},
+                {category: "others", amount: 0}
             ], balance:0}))
             payload.navigation.navigate('Login')
         })
@@ -152,14 +150,14 @@ export function getFromForm(data){
         })
     }
 }
-function axPlan(userid){
+export function axPlan(userid){
     return axios.get(`${androidUrl}:3000/plan/${userid}`)
 }
 
 export function getPlans() {
     let userid = ''
     return (dispatch) => {
-        AsyncStorage.getItem('userid', function(err,data){
+        AsyncStorage.getItem('userid', function(err, data){
             userid=data
             axPlan(userid)
             .then(({data}) => {
@@ -266,8 +264,6 @@ export function deletePlan(data) {
 }
 
 export function addOutcome(payload) {
-    console.log(payload);
-
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,id){
             axios.post(`${androidUrl}:3000/outcome`,payload)
@@ -324,7 +320,7 @@ export function editOutcome(payload) {
 export function deleteOutcome(payload) {
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,id){
-            axios.delete(`${androidUrl}:3000/outcome/${payload}`)
+            axios.delete(`${androidUrl}:3000/outcome/${payload.id}/${payload.planId}`)
             .then(({data}) => {
                 Alert.alert("Data "+data.note+" has been deleted!");
                 dispatch({ 
@@ -332,7 +328,6 @@ export function deleteOutcome(payload) {
                     outcome : data
                 })
                 return axPlan(id)   
-                
             })
             .then(({data}) => {
                 dispatch({ 

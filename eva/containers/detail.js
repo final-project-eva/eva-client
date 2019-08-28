@@ -16,7 +16,7 @@ const mapActionToProps = { editOutcome, getFromForm }
 
 
 const detail = (props) => {
-    
+    const {state} = props.navigation
     useEffect(()=> {
         props.navigation.setParams({
             editOutcome: props.editOutcome,
@@ -26,8 +26,7 @@ const detail = (props) => {
         })
     }, [])
     
-    const {state} = props.navigation
-    
+
     state.params.title = props.title
     state.params.category = props.category
     state.params.price = props.price
