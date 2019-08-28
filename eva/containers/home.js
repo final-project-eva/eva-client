@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux'
+import { Spinner } from 'native-base'
 import { View, Text, ScrollView, Dimensions, Image, TouchableHighlight, AsyncStorage } from 'react-native'
 import TrxCard from '../components/trxCard'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -51,7 +52,9 @@ const home = (props) => {
 
     if(plans === undefined){
         return (
-            <Text>loading..</Text>
+            <View style={{flex:1, justifyContent: "center"}}>
+                <Spinner color='red' />
+            </View>
         )
     } else {
         return (
