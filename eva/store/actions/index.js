@@ -277,7 +277,6 @@ export function addOutcome(payload) {
                     outcome : data
                 })
                 return axPlan(id)   
-                
             })
             .then(({data}) => {
                 dispatch({ 
