@@ -1,4 +1,5 @@
 import React from 'react'
+import { AsyncStorage } from 'react-native'
 import { createAppContainer, createBottomTabNavigator, createStackNavigator, createDrawerNavigator } from 'react-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from '../containers/home'
@@ -11,6 +12,7 @@ import Graph from '../containers/graph'
 import Detail from '../containers/detail'
 import Add from '../containers/add'
 import Edit from '../containers/editPlan'
+import { axPlan } from '../store/actions'
 
 const StackNav = createStackNavigator({
   Home: { 

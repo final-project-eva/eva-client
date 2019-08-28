@@ -24,12 +24,11 @@ const home = (props) => {
     },[])
     useEffect(()=>{
         props.getPlans()
-    },[])
+    }, [props.outcome])
     let plans = props.Plans[0]
     const {firstname, lastname, phone_number} = props.Users
     const arrData = []
     const [totalOutcome, settotalOutcome] = useState(0)
-    let overbudget = 0
 
     useEffect( () => {
         if (plans) {
@@ -91,13 +90,13 @@ const home = (props) => {
                 <View style={{ flex: 4, backgroundColor: "#6F1A1D", paddingLeft: "5%", paddingRight: "5%", marginTop: "0.5%" }}>
                     <View style={{ flex: 1, maxHeight: "7%", padding: 0, flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", padding: "1.5%" }}>
                         <Text style={{ color: "white", fontSize: 18 }}>Budgeting: </Text>
-                        <Text style={{ color: "white", fontSize: 18 }}>Overbudget: { overbudget } </Text>
+                        <Text style={{ color: "white", fontSize: 18 }}>Overbudget: { plans.overBudget } </Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: "row", flexWrap: "wrap", width: "100%", alignItems: "center", alignContent: "space-around", padding: "0,5%", marginTop: "2%" }}>
                         {
-                            plans.budgets.map( (el) => {
+                            plans.budgets.map( (el, i) => {
                                 return (
-                                    <View style={{ width: "25%", padding: "1%", maxHeight: "60%" }}>
+                                    <View style={{ width: "25%", padding: "1%", maxHeight: "60%" }} key={i}>
                                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "0.5%", marginRight: "0.5%", marginBottom: "1%", height: "3%" }}> 
                                             <Text style={{ fontSize: 16, color: "white", textAlign: "center" }}>{ el.category }</Text>
                                             <Text style={{ fontSize: 16, color: "white", textAlign: "center" }}>{ el.amount }</Text>
