@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-const androidUrl = 'http://localhost'
+const androidUrl = 'http://52.206.155.241'
 // const androidUrl = 'http://10.0.2.2'
 
 export function register(payload){
     
     return dispatch => {
-        axios.post(`${androidUrl}:3000/users/register`,{
+        axios.post(`${androidUrl}/users/register`,{
             firstname: payload.firstname, 
             lastname: payload.lastname, 
             password: payload.password, 
@@ -50,7 +50,7 @@ export function register(payload){
 
 export function login(payload){
     return dispatch => {
-        axios.post(`${androidUrl}:3000/users/login`,{
+        axios.post(`${androidUrl}/users/login`,{
             password: payload.password, 
             email: payload.email
         })
@@ -79,7 +79,7 @@ export function login(payload){
     }
 }
 function axUser(token){
-    return axios.get(`${androidUrl}:3000/users`, 
+    return axios.get(`${androidUrl}/users`, 
     { 
         headers: {
             token : token
@@ -106,7 +106,7 @@ export function getUsers(token){
 
 export function updateProfile(payload){
     return dispatch => {
-        axios.put(`${androidUrl}:3000/users`, {
+        axios.put(`${androidUrl}/users`, {
             firstname: payload.firstname, 
             lastname: payload.lastname,
             email: payload.email, 
@@ -151,7 +151,7 @@ export function getFromForm(data){
     }
 }
 export function axPlan(userid){
-    return axios.get(`${androidUrl}:3000/plan/${userid}`)
+    return axios.get(`${androidUrl}/plan/${userid}`)
 }
 
 export function getPlans() {
@@ -175,7 +175,7 @@ export function getPlans() {
 
 export function getPlan(id) {
     return (dispatch) => {
-        axios.get(`${androidUrl}:3000/plan/detail/${id}`)
+        axios.get(`${androidUrl}/plan/detail/${id}`)
         .then(({data}) => {
             dispatch({ 
                 type: "GET_PLAN",
@@ -190,7 +190,7 @@ export function getPlan(id) {
 
 export function addPlan(data) {
     return (dispatch) => {
-        axios.post(`${androidUrl}:3000/plan`, {
+        axios.post(`${androidUrl}/plan`, {
             balance: data.balance,
             budgets: data.budgets,
             username: data.username,
@@ -214,7 +214,7 @@ export function addPlan(data) {
 export function editPlan(data) {
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,id){
-            axios.patch(`${androidUrl}:3000/plan/${data.id}`,data)
+            axios.patch(`${androidUrl}/plan/${data.id}`,data)
             .then(({data}) => {
                 dispatch({ 
                     type: "EDIT_PLAN"
@@ -250,7 +250,7 @@ export function editPlan(data) {
 
 export function deletePlan(data) {
     return (dispatch) => {
-        axios.delete(`${androidUrl}:3000/plan/${data.id}`)
+        axios.delete(`${androidUrl}/plan/${data.id}`)
         .then(({data}) => {
             dispatch({ 
                 type: "DELETE_PLAN",
@@ -266,7 +266,7 @@ export function deletePlan(data) {
 export function addOutcome(payload) {
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,id){
-            axios.post(`${androidUrl}:3000/outcome`,payload)
+            axios.post(`${androidUrl}/outcome`,payload)
             .then(({data}) => {
                 dispatch({ 
                     type: "ADD_OUTCOME",
@@ -293,14 +293,12 @@ export function editOutcome(payload) {
     
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,id){
-            axios.patch(`${androidUrl}:3000/outcome/${payload.id}`,payload)
+            axios.delete(`${androidUrl}/outcome/${payload.id}/${payload.planningId}`)
             .then(({data}) => {
-                dispatch({ 
-                    type: "EDIT_OUTCOME",
-                    outcome : data
-                })
-                return axPlan(id)   
-                
+                return axios.post(`${androidUrl}/outcome`,payload)  
+            })
+            .then(({data}) => {
+                return axPlan(id) 
             })
             .then(({data}) => {
                 dispatch({ 
@@ -320,7 +318,7 @@ export function editOutcome(payload) {
 export function deleteOutcome(payload) {
     return (dispatch) => {
         AsyncStorage.getItem('userid', function(err,id){
-            axios.delete(`${androidUrl}:3000/outcome/${payload.id}/${payload.planId}`)
+            axios.delete(`${androidUrl}/outcome/${payload.id}/${payload.planId}`)
             .then(({data}) => {
                 Alert.alert("Data "+data.note+" has been deleted!");
                 dispatch({ 
@@ -344,7 +342,7 @@ export function deleteOutcome(payload) {
 
 export function getOutcome(data) {
     return (dispatch) => {
-        axios.get(`${androidUrl}:3000/outcome/${data.id}`)
+        axios.get(`${androidUrl}/outcome/${data.id}`)
         .then(({data}) => {
             dispatch({ 
                 type: "GET_OUTCOME",

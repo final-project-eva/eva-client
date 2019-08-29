@@ -22,21 +22,21 @@ const trxCard = (props) => {
     }
 
     return (
-        <View style={{ backgroundColor: "#E0115F", marginTop: 8, borderRadius: 10, padding: 5 }}>
+        <View style={{ backgroundColor: "#FFCC00", marginTop: 8, borderRadius: 10, padding: 5 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Text style={{ fontSize: 18, color: "white" }}> {titleCase(plans.category)} </Text>
+                <Text style={{ fontSize: 18, color: "black" }}> {titleCase(plans.category)} </Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                     <TouchableHighlight onPress={ () => navigation.navigate('Detail', { plans: plans }) }>
-                        <Icon name="edit" style={{ fontSize: 20, color: "white", marginRight: 10 }}> </Icon>
+                        <Icon name="edit" style={{ fontSize: 20, color: "black", marginRight: 10 }}> </Icon>
                     </TouchableHighlight>
                     <TouchableHighlight onPress={ () => {deleteoutcome({id: plans._id, planId: plans.planningId})}}>
-                        <Icon name="trash" style={{ fontSize: 20, color: "white" }}> </Icon>   
+                        <Icon name="trash" style={{ fontSize: 20, color: "black" }}> </Icon>   
                     </TouchableHighlight>
                 </View>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Text style={{ fontSize: 20, color: "white" }}> {plans.note} </Text>
-                <Text style={{ fontSize: 20, color: "white" }}>{plans.amount}</Text>
+                <Text style={{ fontSize: 20, color: "black" }}> {plans.note} </Text>
+                <Text style={{ fontSize: 20, color: "black" }}>{plans.amount}</Text>
             </View>
         </View>
     )

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { View, Text, Dimensions, Image, AsyncStorage } from 'react-native'
 import { PieChart } from 'react-native-chart-kit'
+import { Spinner } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { getPlans, getUsers } from '../store/actions'
 import { connect } from 'react-redux'
@@ -100,7 +101,6 @@ const history = (props) => {
            } 
         })
         let data = {FB, Bills, Education, Entertainment, Health, PC, Transport, Other}
-        console.log(data, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         return data
     }
     console.log(FB, transport, education, health, entertainment, bills, PC, other)
@@ -128,7 +128,9 @@ const history = (props) => {
 
     if(plans === undefined){
         return (
-            <Text>loading..</Text>
+            <View style={{flex:1, justifyContent: "center"}}>
+                <Spinner color='red' />
+            </View>
         )
     } else {
         return (

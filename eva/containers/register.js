@@ -86,7 +86,7 @@ function Register(props){
     return (
 
         <Container>
-            <Content style={{marginTop:20}}>
+            <Content style={{marginTop:20, padding: "5%", paddingLeft: "3%", width: "95%"}}>
                 <Form>
                     <Item floatingLabel>
                         <Label>First Name</Label>
@@ -138,7 +138,17 @@ const styles= StyleSheet.create({
         width:380,
         borderRadius: 25,
         marginVertical: 10,
-        paddingVertical: 13
+        paddingVertical: 13, 
+        marginLeft: "5%"
       }
 })
+
+Register.navigationOptions = (props) => ({
+    title: 'Register',
+    headerTitleStyle: {
+        color: "#6F1A1D"
+    },
+    headerTintColor: "#6F1A1D",
+})
+
 export default connect(mapStateToProps,mapActionToProps)(Register)
