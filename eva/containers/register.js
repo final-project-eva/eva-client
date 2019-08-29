@@ -18,7 +18,6 @@ function Register(props){
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [username, setUsername] = useState('')
     const [error,setError] = useState(props.error)
 
     const { types, users } = props.navigation.state.params
@@ -62,7 +61,7 @@ function Register(props){
     }
 
     function signUp(){
-        props.register({firstname, lastname, email, username, password, phone, navigation: props.navigation})
+        props.register({firstname, lastname, email, password, phone, username, navigation: props.navigation})
     
     }
 
@@ -70,7 +69,7 @@ function Register(props){
         
     function editUser(){
         AsyncStorage.getItem("token", function(err, data){
-            props.updateProfile({firstname, lastname, email, phone, token: data, navigation: props.navigation })
+            props.updateProfile({firstname, lastname, email, phone, username, token: data, navigation: props.navigation })
         })
                 if(error){
                     Alert.alert(
@@ -86,8 +85,8 @@ function Register(props){
 
     return (
 
-        <Container style={{marginTop:30}}>
-            <Content>
+        <Container>
+            <Content style={{marginTop:20, padding: "5%", paddingLeft: "3%", width: "95%"}}>
                 <Form>
                     <Item floatingLabel>
                         <Label>First Name</Label>
@@ -106,10 +105,6 @@ function Register(props){
                         <Input onChangeText={(text)=> { getEmail(text) }} value={email}/>
                     </Item>
                     <Item floatingLabel>
-                        <Label>Username</Label>
-                        <Input onChangeText={(text)=> { getUsername(text) }} value={email}/>
-                    </Item>
-                    <Item floatingLabel>
                         <Label>Phone Number</Label>
                         <Input onChangeText={(text)=> { getPhone(text) }} value={phone}/>
                     </Item>
@@ -119,10 +114,8 @@ function Register(props){
                             <Label>Password</Label>
                             <Input onChangeText={(text)=> { getPassword(text) }} value={password} secureTextEntry/>
                         </Item>
-                
                     }
                     <View style={{flex:1, alignItems: "center"}}>
-
                     {
                         types == 'edit' ? 
                         <TouchableOpacity onPress={()=> { editUser() }} style={styles.btn}>
@@ -145,7 +138,17 @@ const styles= StyleSheet.create({
         width:380,
         borderRadius: 25,
         marginVertical: 10,
-        paddingVertical: 13
+        paddingVertical: 13, 
+        marginLeft: "5%"
       }
 })
+
+Register.navigationOptions = (props) => ({
+    title: 'Register',
+    headerTitleStyle: {
+        color: "#6F1A1D"
+    },
+    headerTintColor: "#6F1A1D",
+})
+
 export default connect(mapStateToProps,mapActionToProps)(Register)

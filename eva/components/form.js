@@ -7,20 +7,32 @@ import { getFromForm } from '../store/actions'
 const mapStateToProps = (state) => {
     return {
         title : state.Outcome.title,
-        
+        category: state.Outcome.category,
+        price: state.Outcome.price
     }
 }
 
 const mapActionToProps = { getFromForm }
 
 const form = (props) => {
+    
     const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('Bills')
     const [price, setPrice] = useState('')
 
     useEffect(()=> {
         props.getFromForm({title: title, category: category, price: price})
     },[title,category,price])
+
+    useEffect(()=> {
+        if(props.inputdata){
+            console.log(props.inputdata,'inoutdata');
+
+            setTitle(props.inputdata.title)
+            setCategory(props.inputdata.category)
+            setPrice(String(props.inputdata.price))
+        }
+    },[])
 
     function getTitle(text){
         setTitle(text)
@@ -58,13 +70,14 @@ const form = (props) => {
                         </Header>}
                     mode="dropdown" iosIcon={<Icon name="arrow-down" />} placeholder="Select Category" placeholderStyle={{ color: "#bfc6ea" }} 
                     placeholderIconColor="#007aff" selectedValue={category} onValueChange={(value)=> setCategory(value)} >
-                        <Picker.Item label="Bills" value="Bills" />
-                        <Picker.Item label="Education" value="Education" />
-                        <Picker.Item label="Entertainment" value="Entertainment" />
-                        <Picker.Item label="Food & Beverages" value="Food & Beverages" />
-                        <Picker.Item label="Health" value="Health" />
-                        <Picker.Item label="Personal Care" value="Personal Care" />
-                        <Picker.Item label="Other" value="Other" />
+                        <Picker.Item label="Bills" value="bills" />
+                        <Picker.Item label="Education" value="education" />
+                        <Picker.Item label="Transportation" value="transportation" />
+                        <Picker.Item label="Entertainment" value="entertainment" />
+                        <Picker.Item label="Food & Beverages" value="food & beverages" />
+                        <Picker.Item label="Health" value="health" />
+                        <Picker.Item label="Personal Care" value="personal care" />
+                        <Picker.Item label="Others" value="others" />
                     </Picker>
                 </Form>
             </Content>
