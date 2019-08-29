@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const trxCard = (props) => {
     let { navigation, plans } = props
-    console.log(plans,'pppppppp')
     
     return (
         <View style={{ backgroundColor: "#E0115F", marginTop: 10, borderRadius: 10, padding: 10 }}>
