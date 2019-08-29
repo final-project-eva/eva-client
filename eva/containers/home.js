@@ -25,7 +25,7 @@ const home = (props) => {
     },[])
     useEffect(()=>{
         props.getPlans()
-    }, [props.outcome])
+    })
     let plans = props.Plans[0]
     const {firstname, lastname, phone_number} = props.Users
     const arrData = []
@@ -47,7 +47,15 @@ const home = (props) => {
             total += element.amount
         })
         return total
-    }       
+    }    
+    
+    function titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (var i = 0; i < str.length; i++) {
+          str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+        }
+        return str.join(' ');
+    }
 
     if(plans === undefined){
         return (
@@ -101,7 +109,7 @@ const home = (props) => {
                                 return (
                                     <View style={{ width: "25%", padding: "1%", maxHeight: "60%" }} key={i}>
                                         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderColor: "white", borderRadius: 5, borderWidth: 3, marginLeft: "0.5%", marginRight: "0.5%", marginBottom: "1%", height: "3%" }}> 
-                                            <Text style={{ fontSize: 16, color: "white", textAlign: "center" }}>{ el.category }</Text>
+                                            <Text style={{ fontSize: 16, color: "white", textAlign: "center" }}>{titleCase(el.category)}</Text>
                                             <Text style={{ fontSize: 16, color: "white", textAlign: "center" }}>{ el.amount }</Text>
                                         </View>
                                     </View>

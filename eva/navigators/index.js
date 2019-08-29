@@ -12,7 +12,6 @@ import Graph from '../containers/graph'
 import Detail from '../containers/detail'
 import Add from '../containers/add'
 import Edit from '../containers/editPlan'
-import { axPlan } from '../store/actions'
 
 const StackNav = createStackNavigator({
   Home: { 

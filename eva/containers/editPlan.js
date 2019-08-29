@@ -69,25 +69,25 @@ const Formeditplan = (props) => {
     }, [])
      useEffect(()=> {
         state.params.plans.budgets.forEach(el => {
-            if(el.category == "Food & Beverages"){
+            if(el.category == "food & beverages"){
                 el.amount = fb
-            }else if(el.category == "Bills"){
+            }else if(el.category == "bills"){
                 el.amount = bills
-            }else if(el.category == "Education"){
+            }else if(el.category == "education"){
                 el.amount = education
-            } else if(el.category == "Transportation"){
+            } else if(el.category == "transportation"){
                 el.amount = transport
             }
-            else if(el.category == "Entertainment"){
+            else if(el.category == "entertainment"){
                 el.amount = entertainment
             }
-            else if(el.category == "Health"){
+            else if(el.category == "health"){
                 el.amount = health
             }
-            else if(el.category == "Personal Care"){
+            else if(el.category == "personal care"){
                 el.amount = personal
             }
-            else if(el.category == "Other"){
+            else if(el.category == "others"){
                 el.amount = other
             }
         });
